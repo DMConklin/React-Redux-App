@@ -1,17 +1,33 @@
-import { FETCH_TITLE_FAIL, FETCH_TITLE_SUCCESS, FETCH_TITLE_START} from '../actions/actions';
+import { FETCH_FILM_FAIL, FETCH_FILM_SUCCESS, FETCH_FILM_START} from '../actions/actions';
 
-const initialState = [
-    []
-]
+const initialState = {
+    films: [],
+    error: '',
+    isFetching: false
+};
 
-export function reducer(state = initialState, action) {
+export const reducer = (state = initialState, action) => {
     switch(action.type) {
-        case FETCH_TITLE_START:
-            return state;
-        case FETCH_TITLE_SUCCESS:
-            return state;
-        case FETCH_TITLE_FAIL:
-            return state;
+        case FETCH_FILM_START:
+            console.log(FETCH_FILM_START);
+            return {
+                ...state,
+                isFetching: true,
+                error: ''
+            };
+        case FETCH_FILM_SUCCESS:
+            console.log(FETCH_FILM_SUCCESS);
+            return {
+                films: action.payload,
+                isFetching: false,
+                error: ''
+            };
+        case FETCH_FILM_FAIL:
+            console.log(FETCH_FILM_FAIL);
+            return {
+                ...state,
+                error: action.payload
+            };
         default:
             return state;
     }

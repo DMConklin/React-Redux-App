@@ -1,15 +1,16 @@
 import axios from 'axios';
 
-export const FETCH_TITLE_START = 'FETCH_TITLE_START';
-export const FETCH_TITLE_SUCCESS = 'FETCH_TITLE_SUCCESS';
-export const FETCH_TITLE_FAIL = ' FETCH_TITLE_FAIL';
+export const FETCH_FILM_START = 'FETCH_FILM_START';
+export const FETCH_FILM_SUCCESS = 'FETCH_FILM_SUCCESS';
+export const FETCH_FILM_FAIL = ' FETCH_FILM_FAIL';
 
-export const createSmurf = () => dispatch => {
-    dispatch({ type: FETCH_TITLE_START} );
+export const getFilms = () => dispatch => {
+    dispatch({ type: FETCH_FILM_START} );
     axios
-        .get('https://ghibliapi.herokuapp.com')
+        .get('https://ghibliapi.herokuapp.com/films')
         .then(res => {
-            dispatch({ type: FETCH_TITLE_SUCCESS, payload: res.data.results })
+            dispatch({ type: FETCH_FILM_SUCCESS, payload: res.data })
+            console.log(res);
         })
-        .catch(err => dispatch({type: FETCH_TITLE_FAIL, payload: err }));
+        .catch(err => dispatch({type: FETCH_FILM_FAIL, payload: err }));
 }
