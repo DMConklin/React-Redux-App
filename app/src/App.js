@@ -10,15 +10,25 @@ const mapStateToProps = state => {
   }
 }
 
+const containerStyles = {
+  textAlign: 'center',
+  marginTop: '20px'
+};
+
+const pStyles = {
+  fontWeight: 'bold',
+  textDecoration: 'underline'
+}
+
 const App = props => {
   return (
-    <>
-    <button onClick={props.getFilms}>Update Titles</button>
-    {props.error.length > 0 ? <p>{props.error}</p> : null}
-    <div className="App">
-      {props.films.map(film => <p key={film.id}>{film.title}</p>)}
+    <div style={containerStyles}>
+      <button onClick={props.getFilms}>Update Titles</button>
+      {props.error.length > 0 ? <p>{props.error}</p> : null}
+      <div className="App">
+        {props.films.map(film => <p key={film.id} style={pStyles}>{film.title}</p>)}
+      </div>
     </div>
-    </>
   );
 }
 
